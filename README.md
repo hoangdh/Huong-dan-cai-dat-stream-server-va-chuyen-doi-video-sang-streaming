@@ -1,4 +1,4 @@
-## Hướng dẫn tạo server video streaming
+## HƯỚNG DẪN TẠO STREAM SERVER VÀ CHUYỂN ĐỔI VIDEO THƯỜNG SANG STREAMING
 
 Powered by <a href="http://meditech.vn">MediTech,. JSC</a> & <a href="http://longvanidc.vn">LongVanIDC</a>
 
@@ -52,7 +52,7 @@ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DENABLE_S
 
 ```
 
-#### 3. Biên dịch gói mã hóa âm thanh chuẩn acc
+#### 3. Biên dịch gói mã hóa âm thanh chuẩn ACC
 
 ```
 cd ~/ffmpeg_sources
@@ -91,7 +91,7 @@ make install
 make distclean
 ```
 
-#### 6. Biên dịch thư viện âm thanh OOG
+#### 6. Biên dịch thư viện âm thanh OGG
 
 ```
 cd ~/ffmpeg_sources
