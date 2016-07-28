@@ -7,6 +7,7 @@ Powered by <a href="http://meditech.vn">MediTech,. JSC</a> & <a href="http://lon
 ```
 
 OS: CentOS 6.7
+NIC: eth0 - 192.168.100.192
 Internet: Có (Bắt buộc)
 
 ```
@@ -164,6 +165,15 @@ service nginx start
 chkconfig nginx on
 ```
 
+Tắt SELinux và mở port 80 trên iptables
+
+```
+sed s/"SELINUX=enforcing"/"SELINUX=disabled"/g /etc/sysconfig/selinux
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+service iptables save
+service iptables restart
+```
+
 Copy các file stream, playlist vào một thư thục và chuyển chúng tới thư mục public html của bạn.
 
 Mặc định, thư mục public của nginx ở CentOS
@@ -173,3 +183,5 @@ Mặc định, thư mục public của nginx ở CentOS
 ```
 
 <img src="http://image.prntscr.com/image/57939a7e0e6d4510a74d75ea03bb3fac.png" />
+
+Địa chỉ stream của tôi: http://192.168.100.192/bai-hat-abc/playlist.m3u8
