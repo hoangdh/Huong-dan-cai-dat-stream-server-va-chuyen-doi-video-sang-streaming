@@ -155,7 +155,7 @@ ffmpeg -y -i input.mp4 -r 25 -g 25 -c:a libfdk_aac -b:a 128k -c:v libx264 -prese
 - `playlist.m3u8`: Playlist chứa thông tin các file stream
 - `output-%04d`: File stream có dạng output-0001.ts, output-000n.ts
 
-#### Cài đặt Web Server để players chạy stream
+### Cài đặt Web Server để players chạy stream
 
 Chúng ta cài đặt NGINX
 
