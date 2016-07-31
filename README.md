@@ -1,6 +1,19 @@
-## Hướng dẫn tạo server video streaming
+## 1. Giới thiệu về HTTP Live Streaming (HLS)
+
+HTTP Live Streaming (hay còn được biết đến là HLS) là một cách truyền media dựa trên giao thức HTTP được Apple phát triển. Nó hỗ trợ các luồng trực tuyến, có khả năng thay đổi chất lượng phù hợp với thiết bị và băng thông mạng đang sử dụng. Cụ thể, giao thức làm việc như sau
+
+- Một tệp tin hay một luồng live sẽ được chia thành các file nhỏ
+- Các file nhỏ bên trên sẽ được lưu trữ trong một máy chủ web và lắng nghe các request từ một trình player.
+- Khi phát, player sẽ phát liên tiếp các file nhỏ một cách liền mạch mà không bị ngắt quãng
+
+Nếu stream được chia thành nhiều chất lượng khác nhau (480p, 720p), thì player sẽ tự động lựa chọn chất lượng video tốt nhất để phát dựa theo tình trạng băng thông mạng. Thuật ngữ này là Adaptive Streaming (Thích nghi với điều kiện).
+
+<img src="https://support.jwplayer.com/customer/portal/attachments/238062" />
+
 
 Powered by <a href="http://meditech.vn">MediTech,. JSC</a> & <a href="http://longvanidc.vn">LongVanIDC</a>
+
+## 2. Hướng dẫn tạo server video streaming
 
 ##### Thông tin về server cài đặt
 
@@ -173,3 +186,4 @@ Mặc định, thư mục public của nginx ở CentOS
 ```
 
 <img src="http://image.prntscr.com/image/57939a7e0e6d4510a74d75ea03bb3fac.png" />
+
