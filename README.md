@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+# Kỹ thuật Streaming
 ## 1. Giới thiệu về HTTP Live Streaming (HLS)
 
 HTTP Live Streaming (hay còn được biết đến là HLS) là một cách truyền media dựa trên giao thức HTTP được Apple phát triển. Nó hỗ trợ các luồng trực tuyến, có khả năng thay đổi chất lượng phù hợp với thiết bị và băng thông mạng đang sử dụng. Cụ thể, giao thức làm việc như sau
@@ -11,22 +11,18 @@ Nếu stream được chia thành nhiều chất lượng khác nhau (480p, 720p
 
 <img src="https://support.jwplayer.com/customer/portal/attachments/238062" />
 
-=======
-## HƯỚNG DẪN TẠO STREAM SERVER VÀ CHUYỂN ĐỔI VIDEO THƯỜNG SANG STREAMING
->>>>>>> origin/master
+## 2. HƯỚNG DẪN TẠO STREAM SERVER VÀ CHUYỂN ĐỔI VIDEO THƯỜNG SANG STREAMING
 
 Powered by <a href="http://meditech.vn">MediTech,. JSC</a> & <a href="http://longvanidc.vn">LongVanIDC</a>
 
-## 2. Hướng dẫn tạo server video streaming
+### 2.1 Hướng dẫn tạo server video streaming
 
 ##### Thông tin về server cài đặt
 
 ```
-
 OS: CentOS 6.7
 NIC: eth0 - 192.168.100.192
 Internet: Có (Bắt buộc)
-
 ```
 
 ### Cài đặt ffmpeg để chuyển đổi video thường sang dạng Streaming (ts)
@@ -39,7 +35,7 @@ yum update
 yum install -y autoconf automake cmake freetype-devel gcc gcc-c++ git libtool make mercurial nasm pkgconfig zlib-devel
 ```
 
-#### 1. Biên dịch yasm từ source
+#### 2.1.1 Biên dịch yasm từ source
 
 ```
 mkdir ~/ffmpeg_sources
@@ -53,7 +49,7 @@ make install
 make distclean
 ```
 
-#### 2. Biên dịch gói mã hóa video dạng x264 và x265
+#### 2.1.2 Biên dịch gói mã hóa video dạng x264 và x265
 
 ```
 cd ~/ffmpeg_sources
@@ -69,7 +65,7 @@ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DENABLE_S
 
 ```
 
-#### 3. Biên dịch gói mã hóa âm thanh chuẩn ACC
+#### 2.1.3 Biên dịch gói mã hóa âm thanh chuẩn ACC
 
 ```
 cd ~/ffmpeg_sources
@@ -82,7 +78,7 @@ make install
 make distclean
 ```
 
-#### 4. Biên dịch gói mã hóa âm thanh LAME
+#### 2.1.4 Biên dịch gói mã hóa âm thanh LAME
 
 ```
 cd ~/ffmpeg_sources
@@ -95,7 +91,7 @@ make install
 make distclean
 ```
 
-#### 5. Biên dịch code OPUS
+#### 2.1.5 Biên dịch code OPUS
 
 ```
 cd ~/ffmpeg_sources
@@ -108,7 +104,7 @@ make install
 make distclean
 ```
 
-#### 6. Biên dịch thư viện âm thanh OGG
+#### 2.1.6 Biên dịch thư viện âm thanh OGG
 
 ```
 cd ~/ffmpeg_sources
@@ -121,7 +117,7 @@ make install
 make distclean
 ```
 
-#### 7. Biên dịch thư viện mã hóa âm thanh Vorbis
+#### 2.1.7 Biên dịch thư viện mã hóa âm thanh Vorbis
 
 ```
 cd ~/ffmpeg_sources
@@ -134,7 +130,7 @@ make install
 make distclean
 ```
 
-#### 8. Biên dịch thư viện libvpx của WebM
+#### 2.1.8 Biên dịch thư viện libvpx của WebM
 
 ```
 cd ~/ffmpeg_sources
@@ -146,7 +142,7 @@ make install
 make clean
 ```
 
-#### 9. Biên dịch ffmpeg
+#### 2.1.9 Biên dịch ffmpeg
 
 ```
 cd ~/ffmpeg_sources
@@ -162,7 +158,7 @@ make distclean
 
 <img src="http://image.prntscr.com/image/78cfb8e77260481e9e5b1095c91167e3.png" />
 
-### Chuyển đổi video thường sang dạng Streaming (ts)
+### 2.2 Chuyển đổi video thường sang dạng Streaming (ts)
 
 ```
 ffmpeg -y -i input.mp4 -r 25 -g 25 -c:a libfdk_aac -b:a 128k -c:v libx264 -preset veryfast -b:v 1600k -maxrate 1600k -bufsize 800k -s 640x360 -c:a libfdk_aac -vbsf h264_mp4toannexb -flags -global_header -f ssegment -segment_list playlist.m3u8 -segment_list_flags +live-cache -segment_time 5 output-%04d.ts
@@ -172,7 +168,7 @@ ffmpeg -y -i input.mp4 -r 25 -g 25 -c:a libfdk_aac -b:a 128k -c:v libx264 -prese
 - `playlist.m3u8`: Playlist chứa thông tin các file stream
 - `output-%04d`: File stream có dạng output-0001.ts, output-000n.ts
 
-### Cài đặt Web Server để players chạy stream
+### 2.3 Cài đặt Web Server để players chạy stream
 
 Chúng ta cài đặt NGINX
 
@@ -199,11 +195,9 @@ Mặc định, thư mục public của nginx ở CentOS
 /usr/share/nginx/html
 ```
 
-<<<<<<< HEAD
 <img src="http://image.prntscr.com/image/57939a7e0e6d4510a74d75ea03bb3fac.png" />
 
 =======
 <img src="http://image.prntscr.com/image/57939a7e0e6d4510a74d75ea03bb3fac.png"/>
 
 Địa chỉ stream của tôi: http://192.168.100.192/bai-hat-abc/playlist.m3u8
->>>>>>> origin/master
