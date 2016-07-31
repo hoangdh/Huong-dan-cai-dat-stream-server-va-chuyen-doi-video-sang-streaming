@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## 1. Giới thiệu về HTTP Live Streaming (HLS)
 
 HTTP Live Streaming (hay còn được biết đến là HLS) là một cách truyền media dựa trên giao thức HTTP được Apple phát triển. Nó hỗ trợ các luồng trực tuyến, có khả năng thay đổi chất lượng phù hợp với thiết bị và băng thông mạng đang sử dụng. Cụ thể, giao thức làm việc như sau
@@ -10,6 +11,9 @@ Nếu stream được chia thành nhiều chất lượng khác nhau (480p, 720p
 
 <img src="https://support.jwplayer.com/customer/portal/attachments/238062" />
 
+=======
+## HƯỚNG DẪN TẠO STREAM SERVER VÀ CHUYỂN ĐỔI VIDEO THƯỜNG SANG STREAMING
+>>>>>>> origin/master
 
 Powered by <a href="http://meditech.vn">MediTech,. JSC</a> & <a href="http://longvanidc.vn">LongVanIDC</a>
 
@@ -20,6 +24,7 @@ Powered by <a href="http://meditech.vn">MediTech,. JSC</a> & <a href="http://lon
 ```
 
 OS: CentOS 6.7
+NIC: eth0 - 192.168.100.192
 Internet: Có (Bắt buộc)
 
 ```
@@ -64,7 +69,7 @@ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DENABLE_S
 
 ```
 
-#### 3. Biên dịch gói mã hóa âm thanh chuẩn acc
+#### 3. Biên dịch gói mã hóa âm thanh chuẩn ACC
 
 ```
 cd ~/ffmpeg_sources
@@ -103,7 +108,7 @@ make install
 make distclean
 ```
 
-#### 6. Biên dịch thư viện âm thanh OOG
+#### 6. Biên dịch thư viện âm thanh OGG
 
 ```
 cd ~/ffmpeg_sources
@@ -167,7 +172,7 @@ ffmpeg -y -i input.mp4 -r 25 -g 25 -c:a libfdk_aac -b:a 128k -c:v libx264 -prese
 - `playlist.m3u8`: Playlist chứa thông tin các file stream
 - `output-%04d`: File stream có dạng output-0001.ts, output-000n.ts
 
-#### Cài đặt Web Server để players chạy stream
+### Cài đặt Web Server để players chạy stream
 
 Chúng ta cài đặt NGINX
 
@@ -175,6 +180,15 @@ Chúng ta cài đặt NGINX
 yum install -y nginx
 service nginx start
 chkconfig nginx on
+```
+
+Tắt SELinux và mở port 80 trên iptables
+
+```
+sed s/"SELINUX=enforcing"/"SELINUX=disabled"/g /etc/sysconfig/selinux
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+service iptables save
+service iptables restart
 ```
 
 Copy các file stream, playlist vào một thư thục và chuyển chúng tới thư mục public html của bạn.
@@ -185,5 +199,11 @@ Mặc định, thư mục public của nginx ở CentOS
 /usr/share/nginx/html
 ```
 
+<<<<<<< HEAD
 <img src="http://image.prntscr.com/image/57939a7e0e6d4510a74d75ea03bb3fac.png" />
 
+=======
+<img src="http://image.prntscr.com/image/57939a7e0e6d4510a74d75ea03bb3fac.png"/>
+
+Địa chỉ stream của tôi: http://192.168.100.192/bai-hat-abc/playlist.m3u8
+>>>>>>> origin/master
