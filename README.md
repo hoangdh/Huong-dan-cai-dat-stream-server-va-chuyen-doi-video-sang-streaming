@@ -1,4 +1,5 @@
 # Kỹ thuật Streaming
+
 ## 1. Giới thiệu về HTTP Live Streaming (HLS)
 
 HTTP Live Streaming (hay còn được biết đến là HLS) là một cách truyền media dựa trên giao thức HTTP được Apple phát triển. Nó hỗ trợ các luồng trực tuyến, có khả năng thay đổi chất lượng phù hợp với thiết bị và băng thông mạng đang sử dụng. Cụ thể, giao thức làm việc như sau
@@ -13,7 +14,9 @@ Nếu stream được chia thành nhiều chất lượng khác nhau (480p, 720p
 
 ## 2. HƯỚNG DẪN TẠO STREAM SERVER VÀ CHUYỂN ĐỔI VIDEO THƯỜNG SANG STREAMING
 
-Powered by <a href="http://meditech.vn">MediTech,. JSC</a> & <a href="http://longvanidc.vn">LongVanIDC</a>
+Powered by <a href="http://meditech.vn">MediTech,. JSC</a>
+
+- Ghi chép về [Wowza](https://github.com/hoangdh/ghichep-StreamingVideo/tree/master/ghichep-Wowza) và [NGINX-RTMP](https://github.com/hoangdh/ghichep-StreamingVideo/blob/master/Setup-NGINX-RTMP.md)
 
 ### 2.1 Hướng dẫn tạo server video streaming
 
